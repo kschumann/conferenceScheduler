@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <base target="_top">
+  <link rel="stylesheet" href="https://ssl.gstatic.com/docs/script/css/add-ons1.css">
+  <style>
+  .branding-below {
+  bottom: 56px;
+  top: 0;
+  }  
+  
+  .cell {
+  padding-left: 15px;
+  padding-right: 15px;
+  }
+  </style>
+  <script>
+  function showWarning(existing){
+        if(existing){
+        var html = "Warning:  A conference host schedule already exists and will be overwritten.  To preserve the existing schedule, copy it to a new sheet before applying a new template.";
+              document.getElementById("warning").innerHTML = html  ; 
+        }
+  }
+  </script>
+  </head>
+  
+  <body onload="google.script.run.withSuccessHandler(showWarning).checkForExisting()">
+    <div class="modalDialog branding-below">
+    <div class="grey" >
+      Use this setup tool to create a quick framework for your conference schedule.  Times and headers can be added, removed or adjusted manually as needed after template has been applied.
+    </div>
+    <form
+      onsubmit="google.script.run.setupAttendeeSchedule(
+      document.getElementById('numTeachers').value, 
+      document.getElementById('startTime').value,
+      document.getElementById('endTime').value,
+      document.getElementById('interval').value);google.script.host.close();">  
+      <table>
+        <tr>
+          <td class="cell">
+          <div class="block form-group">
+          <label for="startTime"><b>First Conference  Start</b></label>
+          <select id="startTime">
+          <option value=7>7:00 am</option>
+          <option value=8>8:00 am</option>
+          <option value=9>9:00 am</option>
+          <option value=10>10:00 am</option>
+          <option value=11>11:00 am</option>
+          <option value=12>12:00 pm</option>
+          <option value=13>1:00 pm</option>
+          </select> 
+          </div>
+          </td>
+          <td  class="cell">
+          <div class="block form-group">
+          <label for="endTime"><b>Last Conference  End</b></label>
+          <select  id = "endTime">
+          <option value=14>2:00 pm</option>
+          <option value=15>3:00 pm</option>
+          <option value=16>4:00 pm</option>
+          <option value=17>5:00 pm</option>
+          <option value=18>6:00 pm</option>  
+          <option value=19>7:00 pm</option> 
+          <option value=20>8:00 pm</option>   
+          </select>
+          </div>
+          </td>
+        </tr>
+        <tr>
+          <td  class="cell">
+          <div class="block form-group">
+          <label for="interval"><b>Conference Length</b></label>
+          <select   id = "interval">
+          <option value=20>20 minutes</option>
+          <option value=30>30 minutes</option>  
+          <option value=60>60 minutes</option> 
+          </select>
+          </div>
+          </td>
+          <td  class="cell">
+          <div class="block form-group">
+          <label for="numTeachers"><b>Number of Conference Hosts</b></label>
+          <select id = "numTeachers">
+          <option value=2>2</option>
+          <option value=3>3</option> 
+          <option value=4>4</option>
+          <option value=5>5</option>
+          <option value=6>6</option> 
+          <option value=7>7</option>   
+          <option value=8>8</option>
+          <option value=9>9</option> 
+          <option value=10>10</option>
+          <option value=11>11</option>
+          <option value=12>12</option>   
+          </select>
+          </div>
+          </td>
+        </tr>
+      </table>
+      <div class="block">
+        <input  
+        id="submit" 
+        class="action" 
+        type="submit" 
+        value="Apply Conference Host Template"/>
+      </div>
+    </form>
+    <p id="warning" class="error"></p>
+    </div>
+  </body>
+</html>
+
+
+
+
+
